@@ -10,6 +10,9 @@ Change Log
 
 |
 
+* 13.0.1.7.0 (2024-xx-xx)
+    - Excluded associated Ventor access permissions for external users
+
 * 13.0.1.6.0 (2022-12-23)
     - Added the setting 'Save transfer after exit' to the Internal Transfers menu
     - Added the setting 'Allow creating new packages' to menus Instant Inventory, Batch Picking, Cluster Picking, Internal Transfers, and all Operation Types

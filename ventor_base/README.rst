@@ -6,6 +6,11 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
+13.0.1.7.0 (2024-xx-xx)
+***********************
+
+* Excluded associated Ventor access permissions for external users
+
 13.0.1.6.0 (2022-12-23)
 ***********************
 
