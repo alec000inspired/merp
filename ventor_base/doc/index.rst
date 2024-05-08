@@ -10,7 +10,7 @@ Change Log
 
 |
 
-* 13.0.1.7.0 (2024-xx-xx)
+* 13.0.1.7.0 (2024-05-08)
     - Excluded associated Ventor access permissions for external users
 
 * 13.0.1.6.0 (2022-12-23)
