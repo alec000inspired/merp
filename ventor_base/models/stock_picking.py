@@ -126,6 +126,20 @@ class StockPickingType(models.Model):
              "'Packages' in inventory settings",
     )
 
+    manage_source_packages = fields.Boolean(
+        string="Show 'From Package' field",
+        default=lambda self: self.env.ref("stock.group_tracking_lot")
+        in self.env.ref("base.group_user").implied_ids,
+        help="If deactivated, the 'From package' field on the Ventor side will be hidden"
+    )
+
+    manage_destination_packages = fields.Boolean(
+        string="Show 'To Package' field",
+        default=lambda self: self.env.ref("stock.group_tracking_lot")
+        in self.env.ref("base.group_user").implied_ids,
+        help="If deactivated, the 'To package' field on the Ventor side will be hidden"
+    )
+
     manage_product_owner = fields.Boolean(
         string="Show Product Owner field",
         default=lambda self: self.env.ref("stock.group_tracking_owner")
@@ -255,15 +269,20 @@ class StockPickingType(models.Model):
                     if not stock_picking_type.confirm_destination_location:
                         stock_picking_type.apply_quantity_automatically = False
 
-        if 'manage_packages' in vals:
+        if 'manage_source_packages' in vals:
             for stock_picking_type in self:
-                if not stock_picking_type.manage_packages:
-                    if stock_picking_type.scan_destination_package:
-                        stock_picking_type.scan_destination_package = False
+                if not stock_picking_type.manage_source_packages:
                     if stock_picking_type.confirm_source_package:
                         stock_picking_type.confirm_source_package = False
+
+        if 'manage_destination_packages' in vals:
+            for stock_picking_type in self:
+                if not stock_picking_type.manage_destination_packages:
+                    if stock_picking_type.scan_destination_package:
+                        stock_picking_type.scan_destination_package = False
                     if stock_picking_type.allow_creating_new_packages:
                         stock_picking_type.allow_creating_new_packages = False
+
         return res
 
     def get_warehouse_operation_settings(self):
@@ -287,7 +306,9 @@ class StockPickingType(models.Model):
                 "autocomplete_the_item_quantity_field": self.autocomplete_the_item_quantity_field,
                 "show_print_attachment_button": self.show_print_attachment_button,
                 "show_put_in_pack_button": self.show_put_in_pack_button,
-                "manage_packages": self.manage_packages,
+                # "manage_packages": self.manage_packages,
+                "manage_source_packages": self.manage_source_packages,
+                "manage_destination_packages": self.manage_destination_packages,
                 "manage_product_owner": self.manage_product_owner,
                 "behavior_on_backorder_creation": self.behavior_on_backorder_creation,
                 "behavior_on_split_operation": self.behavior_on_split_operation,
