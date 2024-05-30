@@ -130,14 +130,18 @@ class StockPickingType(models.Model):
         string="Show 'From Package' field",
         default=lambda self: self.env.ref("stock.group_tracking_lot")
         in self.env.ref("base.group_user").implied_ids,
-        help="If deactivated, the 'From package' field on the Ventor side will be hidden"
+        help="Scan source packages right after scanning source location. Use it if you move from "
+             "one package to another or pick items from packages or pallets. Works only if package "
+             "management settings is active on Odoo side"
     )
 
     manage_destination_packages = fields.Boolean(
         string="Show 'To Package' field",
         default=lambda self: self.env.ref("stock.group_tracking_lot")
         in self.env.ref("base.group_user").implied_ids,
-        help="If deactivated, the 'To package' field on the Ventor side will be hidden"
+        help="Scan destination packages right after scanning destination location. "
+             "Use it if you move from one package to another or pick items from packages "
+             "or pallets. Works only if package management settings is active on Odoo side"
     )
 
     manage_product_owner = fields.Boolean(
@@ -274,13 +278,15 @@ class StockPickingType(models.Model):
                 if not stock_picking_type.manage_source_packages:
                     if stock_picking_type.confirm_source_package:
                         stock_picking_type.confirm_source_package = False
+                    if stock_picking_type.allow_creating_new_packages and not stock_picking_type.manage_destination_packages:
+                        stock_picking_type.allow_creating_new_packages = False
 
         if 'manage_destination_packages' in vals:
             for stock_picking_type in self:
                 if not stock_picking_type.manage_destination_packages:
                     if stock_picking_type.scan_destination_package:
                         stock_picking_type.scan_destination_package = False
-                    if stock_picking_type.allow_creating_new_packages:
+                    if stock_picking_type.allow_creating_new_packages and not stock_picking_type.manage_source_packages:
                         stock_picking_type.allow_creating_new_packages = False
 
         return res

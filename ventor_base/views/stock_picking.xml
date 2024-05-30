@@ -25,7 +25,7 @@
                     <field name="manage_source_packages" attrs="{'readonly': [('is_package_tracking_enabled','=',False)]}"/>
                     <field name="manage_destination_packages" attrs="{'readonly': [('is_package_tracking_enabled','=',False)]}"/>
                     <field name="allow_creating_new_packages"
-                           attrs="{'readonly': ['|', ('is_package_tracking_enabled','=',False), ('manage_destination_packages','=',False)]}"/>
+                           attrs="{'readonly': ['|', ('is_package_tracking_enabled','=',False), ('manage_destination_packages','=',False), ('manage_source_packages','=',False)]}"/>
                     <field name="is_consignment_enabled" invisible='1'/>
                     <field name="confirm_source_package"
                            attrs="{'readonly': ['|', ('is_package_tracking_enabled','=',False), ('manage_source_packages','=',False)]}"/>
@@ -70,8 +70,8 @@
                             <field name="manage_source_packages" attrs="{'invisible': [('is_package_tracking_enabled','=',False)]}"/>
                             <field name="manage_destination_packages" attrs="{'invisible': [('is_package_tracking_enabled','=',False)]}"/>
                             <field name="allow_creating_new_packages"
-                                   attrs="{'invisible': ['|', ('is_package_tracking_enabled','=',False), ('manage_destination_packages','=',False)],
-                                           'readonly': ['|', ('is_package_tracking_enabled','=',False), ('manage_destination_packages','=',False)]}"/>
+                                   attrs="{'invisible': ['|', ('is_package_tracking_enabled','=',False), ('manage_destination_packages','=',False), ('manage_source_packages','=',False)],
+                                           'readonly': ['|', ('is_package_tracking_enabled','=',False), ('manage_destination_packages','=',False), ('manage_source_packages','=',False)]}"/>
                             <field name="confirm_source_package"
                                    attrs="{'invisible': ['|', ('is_package_tracking_enabled','=',False), ('manage_source_packages','=',False)],
                                            'readonly': ['|', ('is_package_tracking_enabled','=',False), ('manage_source_packages','=',False)]}"/>
