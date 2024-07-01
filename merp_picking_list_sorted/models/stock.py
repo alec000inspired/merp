@@ -16,5 +16,5 @@ class StockPicking(models.Model):
 
         return pack_operation_ids.sorted(
             key=lambda r: getattr(r.location_id, strategy, 'None'),
-            reverse=strategy_order
+            reverse=int(strategy_order)
         )

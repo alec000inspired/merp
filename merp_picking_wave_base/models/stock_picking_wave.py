@@ -3,6 +3,8 @@
 
 from odoo import models, fields, api, _
 
+import functools
+
 
 class PickingWave(models.Model):
     _inherit = 'stock.picking.batch'
@@ -47,13 +49,16 @@ class PickingWave(models.Model):
         strategy = self.env.user.company_id.outgoing_routing_strategy
         strategy_order = self.env.user.company_id.outgoing_routing_order
 
+        def _r_getattr(obj, attr, *args):
+            return functools.reduce(getattr, [obj] + attr.split('.'))
+
         for rec in self:
             res = self.env['stock.move.line']
             for picking in rec.picking_ids:
                 res += picking.operations_to_pick
             rec.operations_to_pick = res.sorted(
-                key=lambda r: getattr(r.location_id, strategy, 'None'),
-                reverse=strategy_order
+                key=lambda r: _r_getattr(r, strategy, 'None'),
+                reverse=int(strategy_order)
             )
 
             settings = self.env['res.company'].fields_get([
