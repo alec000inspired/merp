@@ -3,7 +3,7 @@
 
 {
     'name': 'Ventor Picking Advanced Search',
-    "version": "11.0.1.0.0",
+    "version": "11.0.1.0.1",
     'author': 'VentorTech',
     'website': 'https://ventor.tech/',
     'license': 'LGPL-3',
@@ -16,4 +16,5 @@
     'data': [
         'views/stock_picking.xml',
     ],
+    'pre_init_hook': 'pre_init_hook',
 }
