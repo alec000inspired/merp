@@ -5,7 +5,7 @@ def migrate(cr, version):
 
     env = api.Environment(cr, SUPERUSER_ID, {})
 
-    set_qty_to_zero = env.ref("ventor_base.lot_for_location_int_transfers")
+    set_qty_to_zero = env.ref("ventor_base.set_qty_to_zero")
     if set_qty_to_zero:
         set_qty_to_zero.write(
             {
