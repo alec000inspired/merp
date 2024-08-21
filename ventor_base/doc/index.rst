@@ -10,7 +10,7 @@ Change Log
 
 |
 
-* 13.0.1.8.0 (2024-08-12)
+* 13.0.1.8.0 (2024-08-21)
     - Updated the description for the 'Set qty to zero' settings in the Inventory Adjustment menu and 'Show packages field' in the Instant Inventory menu
 
 * 13.0.1.7.0 (2024-05-08)
