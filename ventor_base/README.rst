@@ -6,6 +6,11 @@ Base module that allow relation between Ventor modules
 Changelog
 ---------
 
+2.0.0 (2024-xx-xx)
+***********************
+
+* Added the "Quality check per product line" setting to Warehouse Opration, Batch Picking, Cluster Picking, Wave Picking menus
+
 1.7.0 (2024-08-21)
 ***********************
 
