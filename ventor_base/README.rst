@@ -10,6 +10,7 @@ Changelog
 ***********************
 
 * Added the settings "Fast printing" to the Quick Info menu
+* Added the "Quality check per product line" setting to Warehouse Opration, Batch Picking, Cluster Picking, Wave Picking menus
 
 1.7.0 (2024-08-21)
 ***********************

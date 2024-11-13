@@ -42,6 +42,8 @@
                     <field name="check_shipping_information" readonly="code != 'outgoing'"/>
                     <field name="hide_qty_to_receive" readonly="code != 'incoming'"/>
                     <field name="open_details_screen_first"/>
+                    <field name="is_quality_control_module_installed" invisible='1'/>
+                    <field name="quality_check_per_product_line" readonly="is_quality_control_module_installed == False"/>
                 </list>
             </field>
         </record>
@@ -90,6 +92,8 @@
                             <field name="check_shipping_information" invisible="code != 'outgoing'"/>
                             <field name="hide_qty_to_receive" invisible="code != 'incoming'"/>
                             <field name="open_details_screen_first"/>
+                            <field name="is_quality_control_module_installed" invisible='1'/>
+                            <field name="quality_check_per_product_line" readonly="is_quality_control_module_installed == False"/>
                         </group>
                     </group>
                 </xpath>
