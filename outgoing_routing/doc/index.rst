@@ -38,5 +38,8 @@ Change Log
 
 |
 
+* 1.2.0 (2024-xx-xx)
+    - Fixed an issue printing picking operations failed when the transfer included entire packages
+
 * 1.1.0 (2024-11-04)
     - Fixed tests
