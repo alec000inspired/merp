@@ -10,6 +10,9 @@ Change Log
 
 |
 
+* 2.0.0 (2024-xx-xx)
+    - Added the settings "Autofill item quantity" to the Internal Transfer menu
+
 * 1.7.0 (2024-08-21)
     - Added the settings "Apply all lines automatically", "Hide product's quantity", "Hide Apply button" to the RFID Inventory Adjustments menu
     - Added the setting "Hide product's quantity" to the Quick Info menu
