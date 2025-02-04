@@ -38,6 +38,9 @@ Change Log
 
 |
 
+* 1.3.0 (2025-xx-xx)
+    - Optimizing data serialization
+
 * 1.2.0 (2024-01-24)
     - Fixed an issue printing picking operations failed when the transfer included entire packages
 
