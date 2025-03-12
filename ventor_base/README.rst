@@ -6,6 +6,10 @@ Base module that allows relation between Ventor modules
 Changelog
 ---------
 
+18.0.2.1.0 (2025-xx-xx)
+***********************
+* Added the settings "Show Relocate button" to the Quick Info menu
+
 18.0.2.0.0 (2025-03-07)
 ***********************
 
