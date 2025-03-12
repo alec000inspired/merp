@@ -9,6 +9,7 @@ Changelog
 18.0.2.1.0 (2025-xx-xx)
 ***********************
 * Added the settings "Show Relocate button" to the Quick Info menu
+* Added the settings "Start count from zero" to the Inventory Adjustments menu
 
 18.0.2.0.0 (2025-03-07)
 ***********************
