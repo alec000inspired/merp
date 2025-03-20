@@ -10,6 +10,7 @@ Changelog
 ***********************
 * Added the settings "Show Relocate button" to the Quick Info menu
 * Added the settings "Start count from zero" to the Inventory Adjustments menu
+* Added the settings "Show description from product" to the Warehouse Opration, Batch Picking, Cluster Picking, Wave Picking menus
 
 18.0.2.0.0 (2025-03-07)
 ***********************
