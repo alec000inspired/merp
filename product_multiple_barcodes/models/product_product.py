@@ -2,7 +2,7 @@
 # Part of Ventor modules. See LICENSE file for full copyright and licensing details.
 
 from odoo import models, fields, api, _
-from odoo.osv import expression
+from odoo.fields import Domain
 from odoo.exceptions import UserError
 
 
@@ -15,10 +15,7 @@ class ProductProduct(models.Model):
         string='Additional Barcodes',
     )
 
-    # THIS IS OVERRIDE SQL CONSTRAINTS.
-    _sql_constraints = [
-        ('barcode_uniq', 'check(1=1)', 'No error')
-    ]
+    _barcode_uniq = models.Constraint("CHECK (1=1)", "No error")
 
     @api.model
     def _name_search(self, name, args=None, operator='ilike', limit=100, order=None):
@@ -27,7 +24,7 @@ class ProductProduct(models.Model):
         if name:
             domain = ['|', '|', ('name', operator, name), ('default_code', operator, name),
                       '|', ('barcode', operator, name), ('barcode_ids', operator, name)]
-        return self._search(expression.AND([domain, args]),
+        return self._search(Domain.AND([domain, args]),
                                   limit=limit, order=order)
 
     @api.constrains('barcode', 'barcode_ids', 'active')
