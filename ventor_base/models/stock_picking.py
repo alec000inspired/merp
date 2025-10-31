@@ -272,6 +272,17 @@ class StockPickingType(models.Model):
         for item in self:
             item.is_quality_control_module_installed = is_qc_installed
 
+    @api.depends('picking_ids.state', 'picking_ids.priority')
+    def _compute_count_picking_urgent(self):
+        StockPicking = self.env['stock.picking']
+        for picking_type in self:
+            picking_domain = [
+                ('picking_type_id', '=', picking_type.id),
+                ('priority', '=', '1'),
+                ('state', '=', 'assigned'),
+            ]
+            picking_type.count_picking_urgent = StockPicking.search_count(picking_domain)
+
     @api.model_create_multi
     def create(self, vals_list):
         for vals in vals_list:
