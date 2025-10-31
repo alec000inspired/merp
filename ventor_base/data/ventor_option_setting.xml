@@ -174,7 +174,7 @@
         </record>
 
         <record id="ventor_entire_package_batch_picking" model="ventor.option.setting">
-            <field name="name">Ventor Entire Package</field>
+            <field name="name">Ventor entire package</field>
             <field name="technical_name">ventor_entire_package</field>
             <field name="value" ref="ventor_base.bool_false"/>
             <field name="settings_dependency" eval="[(6, 0, [ref('ventor_base.bool_false'), ref('ventor_base.bool_true')])]"/>
