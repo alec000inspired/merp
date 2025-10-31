@@ -173,6 +173,11 @@ class StockPickingType(models.Model):
              "instead of opening a whole stock picking"
     )
 
+    picking_ids = fields.One2many(
+        comodel_name="stock.picking",
+        inverse_name="picking_type_id",
+    )
+
     quality_check_per_product_line = fields.Boolean(
         string="Quality check per product line",
         help="If the setting is active the Quality check wizard will be shown automatically while "
