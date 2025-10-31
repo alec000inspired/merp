@@ -114,6 +114,12 @@ class StockPickingType(models.Model):
         help="Specifies which menu will be opened when a batch link is clicked"
     )
 
+    count_picking_urgent = fields.Integer(
+        compute="_compute_count_picking_urgent",
+        string="Urgent Transfers",
+        store=True,
+    )
+
     hide_qty_to_receive = fields.Boolean(
         string="Hide QTYs to receive",
         help="Setting’s description: User will not see how many QTYs they need to receive."
