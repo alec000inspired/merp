@@ -386,6 +386,7 @@ class StockPickingType(models.Model):
                 "show_put_in_pack_button": self.show_put_in_pack_button,
                 "show_product_information": self.show_product_information,
                 "manage_packages": self.manage_packages,
+                "ventor_entire_package": self.ventor_entire_package,
                 "manage_product_owner": self.manage_product_owner,
                 "move_reserved_quantities": self.move_reserved_quantities,
                 "behavior_on_backorder_creation": self.behavior_on_backorder_creation,
