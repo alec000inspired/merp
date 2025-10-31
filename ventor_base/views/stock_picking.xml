@@ -63,6 +63,7 @@
                 <xpath expr="//group[@name='stock_picking_type_lot']" position="before">
                     <group string="Ventor Configuration" colspan="12">
                         <group>
+                            <field name="count_picking_urgent" invisible="1"/>
                             <field name="confirm_source_location"/>
                             <field name="change_source_location"
                                    readonly="confirm_source_location != True"/>
