@@ -6,7 +6,7 @@
         <field name="model">stock.picking</field>
         <field name="inherit_id" ref="stock.view_picking_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='move_ids_without_package']/.." position="after">
+            <xpath expr="//page[@name='operations']" position="after">
                 <page string="To Process" name="operations_to_pick" groups="ventor_base.merp_debug">
                     <group>
                         <field name="routing_module_version" readonly="1"/>

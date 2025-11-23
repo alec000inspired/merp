@@ -24,9 +24,9 @@ class StockQuant(models.Model):
             return 'removal_prio %s, id' % (['ASC', 'DESC'][int(strategy_order)])
         return super(StockQuant, self)._get_removal_strategy_order(removal_strategy)
 
-    def _get_reserve_quantity(self, product_id, location_id, quantity, product_packaging_id=None, uom_id=None, lot_id=None, package_id=None, owner_id=None, strict=False):
+    def _get_reserve_quantity(self, product_id, location_id, quantity, uom_id=None, lot_id=None, package_id=None, owner_id=None, strict=False):
         self = self.with_context(reservation_strategy=self.env.user.company_id.stock_reservation_strategy, reservation_quantity=quantity)
-        return super(StockQuant, self)._get_reserve_quantity(product_id, location_id, quantity, product_packaging_id, uom_id, lot_id, package_id, owner_id, strict)
+        return super(StockQuant, self)._get_reserve_quantity(product_id, location_id, quantity, uom_id, lot_id, package_id, owner_id, strict)
 
     def _gather(self, product_id, location_id, lot_id=None, package_id=None, owner_id=None, strict=False, qty=0):
         """ Gather (and reorder, if required) quants
@@ -34,7 +34,7 @@ class StockQuant(models.Model):
         context = dict(self.env.context)
         quants = super(StockQuant, self)._gather(product_id, location_id, lot_id=lot_id, package_id=package_id, owner_id=owner_id, strict=strict, qty=qty)
 
-        if self._context.get('skip_ventor_reordering') or (product_id.categ_id and product_id.categ_id.removal_strategy_id)\
+        if self.env.context.get('skip_ventor_reordering') or (product_id.categ_id and product_id.categ_id.removal_strategy_id)\
                 or location_id.removal_strategy_id:
             return quants
 
