@@ -27,17 +27,17 @@ class StockPickingMixin(models.AbstractModel):
             return False
 
     def _get_sml_with_entire_pack(self, operations_to_pick):
-        return operations_to_pick.filtered(lambda x: x.package_level_id and not x.package_level_id.is_done)
+        return operations_to_pick.filtered(lambda x: x.is_entire_pack)
 
     def _get_sml_data(self, sml_ids, operation_fields):
         sml_data = sml_ids.read(fields=operation_fields)
         [rec.update({'_type': 'stock.move.line'}) for rec in sml_data]
         return sml_data
 
-    def _get_package_level_data(self, sml_ids, package_fields):
-        package_level_data = sml_ids.mapped('package_level_id').read(fields=package_fields)
-        [rec.update({'_type': 'stock.package_level'}) for rec in package_level_data]
-        return package_level_data
+    def _get_entire_package_data(self, sml_ids, package_fields):
+        entire_package_data = sml_ids.mapped('package_id').read(fields=package_fields)
+        [rec.update({'_type': 'stock.package_level'}) for rec in entire_package_data]
+        return entire_package_data
 
     def _serialize_picking_data(self, stock_object, package_fields, operation_fields, limit=None):
         picking_data = []
@@ -47,7 +47,9 @@ class StockPickingMixin(models.AbstractModel):
             operations_to_pick = stock_object.operations_to_pick[:limit]
 
         # If entire pack is not used, return only stock move lines without packages
-        is_using_entire_pack = stock_object.picking_type_id.show_entire_packs
+        picking_type_id = stock_object.picking_type_id
+        is_using_entire_pack = getattr(picking_type_id, 'ventor_entire_package', False)
+
         if not is_using_entire_pack:
             sml_data = self._get_sml_data(operations_to_pick, operation_fields)
             picking_data += sml_data
@@ -58,10 +60,10 @@ class StockPickingMixin(models.AbstractModel):
         sml_without_entire_pack_ids = operations_to_pick - sml_with_entire_pack_ids
 
         sml_data = self._get_sml_data(sml_without_entire_pack_ids, operation_fields)
-        package_level_data = self._get_package_level_data(sml_with_entire_pack_ids, package_fields)
+        entire_package_data = self._get_entire_package_data(sml_with_entire_pack_ids, package_fields)
 
         picking_data += sml_data
-        picking_data += package_level_data
+        picking_data += entire_package_data
 
         return picking_data
 
