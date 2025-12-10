@@ -9,8 +9,8 @@ def migrate(cr, version):
     show_next_product_batch = env.ref("ventor_base.show_next_product_wave_picking", False)
 
     value = {
-        "Product field will show the next product to be picked. Use the setting during "
-        "picking and delivery. It is recommended to disable the setting for the reception area"
+        "description": "Product field will show the next product to be picked. Use the setting during "
+                       "picking and delivery. It is recommended to disable the setting for the reception area"
     }
 
     if show_next_product_wave:
