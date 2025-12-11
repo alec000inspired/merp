@@ -26,6 +26,11 @@
                     </field>
                 </page>
             </xpath>
+
+            <xpath expr="//field[@name='move_ids_without_package']/list/field[@name='picked']"
+                   position="after">
+                <field name="ventor_picked" optional="hide" column_invisible="parent.state=='draft'"/>
+            </xpath>
         </field>
     </record>
 

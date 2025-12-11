@@ -2,7 +2,7 @@
 # License LGPL-3.0 or later (https://www.gnu.org/licenses/lgpl-3.0).
 
 {
-    'name': 'Picking and Reservation Strategy',
+    'name': 'Picking and Reservation Strategy(Ventor Galico)',
     "version": "18.0.1.4.0",
     'author': 'VentorTech',
     'website': 'https://ventor.tech/',
@@ -19,6 +19,7 @@
         'data/product_removal.xml',
         'views/res_config.xml',
         'views/stock.xml',
+        'views/stock_move.xml',
         'views/picking.xml',
         'views/report_stockpicking.xml',
         'views/stock_picking_wave.xml',
